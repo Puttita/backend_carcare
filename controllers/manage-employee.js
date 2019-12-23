@@ -17,12 +17,12 @@ router.get('/:id', async function(req, res, next) {
 });
 router.post('/', async function(req, res, next) {
     const data = req.body
-    const { id } = req.authInfo
     try {
-        let result = await managEmployee.insert(data, id)
-        res.json(result)
+        let result = await managEmployee.insert(data)
+        res.sendStatus(200)
     } catch (Exception) {
-        res.sent(400)
+        console.error(Exception)
+        res.sendStatus(400)
     }
 })
 

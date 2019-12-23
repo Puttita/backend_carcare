@@ -8,12 +8,13 @@ router.get('/', async function(req, res, next) {
 })
 router.post('/', async function(req, res, next) {
     const dataMG = req.body
-    const { id } = req.authInfo
+    console.log(dataMG)
     try {
-        let result = await manageManager.insert(dataMG, id)
-        res.json(result)
+        let result = await manageManager.insert(dataMG)
+        res.sendStatus(200)
     } catch (Exception) {
-        res.sent(400)
+        console.error(Exception)
+        res.sendStatus(400)
     }
 })
 module.exports = router;
