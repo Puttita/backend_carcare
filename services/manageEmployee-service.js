@@ -9,7 +9,7 @@ module.exports.insert = async function(data) {
         lname: data.employee_lname,
         tel: data.employee_tel,
         position: data.position_id,
-        create_datetime: new Date()
+        create_datetime: data.create_datetime
     })
 }
 
