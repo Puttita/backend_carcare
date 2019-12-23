@@ -11,7 +11,6 @@ const jwtOption = {
 
 const JwtStrategy = passportJWT.Strategy
 const howToAuth = new JwtStrategy(jwtOption, async function (payload, done) {
-    console.log(payload)
     done(null, true, payload)
 })
 
