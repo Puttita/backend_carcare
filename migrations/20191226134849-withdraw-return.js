@@ -2,23 +2,23 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('wash_tool', {
-      wash_tool_id: {
+    return queryInterface.createTable('withdraw_return', {
+      withdraw_return_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
-      tool_name: {
+      detail: {
         type: Sequelize.STRING(255),
+        allowNull: false,
+      },
+      date_start: {
+        type: Sequelize.DATE,
         allowNull: false
       },
-      amount: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      tool_status: {
-        type: Sequelize.INTEGER,
+      date_end: {
+        type: Sequelize.DATE,
         allowNull: false
       },
       employee_id: {
@@ -35,6 +35,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("wash_tool")
+    return queryInterface.dropTable("withdraw_return")
   }
 };

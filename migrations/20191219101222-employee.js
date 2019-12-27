@@ -11,7 +11,8 @@ module.exports = {
       },
       employee_username: {
         type: Sequelize.STRING(45),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       employee_password: {
         type: Sequelize.STRING(100),
@@ -28,6 +29,10 @@ module.exports = {
       employee_tel: {
         type: Sequelize.STRING(15),
         allowNull: false
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        allowNull: true
       },
       position_id: {
         type: Sequelize.INTEGER,
@@ -48,6 +53,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('employee');    
+    return queryInterface.dropTable('employee');
   }
 };

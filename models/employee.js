@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     employee_username: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     employee_password: {
       type: DataTypes.STRING(100),

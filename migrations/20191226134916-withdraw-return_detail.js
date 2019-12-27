@@ -2,39 +2,45 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('wash_tool', {
-      wash_tool_id: {
+    return queryInterface.createTable('withdraw_return_detail', {
+      wr_detail_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
-      tool_name: {
-        type: Sequelize.STRING(255),
-        allowNull: false
-      },
       amount: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      tool_status: {
+      status: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      employee_id: {
+      withdraw_return_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: {
-            tableName: 'employee'
+            tableName: 'withdraw_return'
           },
-          key: "employee_id"
+          key: "withdraw_return_id"
+        }
+      },
+      wash_tool_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'wash_tool'
+          },
+          key: "wash_tool_id"
         }
       }
     })
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("wash_tool")
+    return queryInterface.dropTable("withdraw_return_detail")
   }
 };

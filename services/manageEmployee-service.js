@@ -24,6 +24,5 @@ module.exports.getEmployeeByID = async function(id){
     return employee
 }
 module.exports.deleteEmployee = async function(id){
-    return await db.employee.delete({where:{employee_id: id}})
-
+    return await db.employee.destroy({where:{employee_id: id}})
 }

@@ -2,16 +2,29 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
- 
+    return queryInterface.createTable('type_car', {
+      type_car_id:{
+        type: Sequelize.INTEGER,
+        allowNul: false,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      size: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+      },
+      brand: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+      },
+      model: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+      }
+    })
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    return queryInterface.dropTable('type_car');
   }
 };
