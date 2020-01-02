@@ -2,6 +2,7 @@ var express = require('express');// ใช้งาน module express
 var path = require('path'); // สร้างตัวแปร app เป็น instance ของ express
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +16,10 @@ var manageTypecar = require('./controllers/manage-typecar')
 var manageCleanservice = require('./controllers/manage-cleanservice')
 var managePromotion = require('./controllers/manage-promotion')
 var manageTool = require('./controllers/manage-washtool')
+var loginWithToken = require('./controllers/loginWithToken')
+const corsOptions = {
+    origin: [process.env.URL, 'http://localhost:3999', '*']
+}
 
 var app = express();
 app.use(logger('dev'));
@@ -25,10 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', login)
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
+app.use('/auth', login)
+app.use('/loginWithToken', authentication, loginWithToken)
 app.use('/logout', authentication, logout)
 app.use('/manageManager', authentication, permission([1]), manageManager)
-app.use('/manageEmployee', authentication, permission([2,3,4]), manageEmployee)
+app.use('/manageEmployee', authentication, permission([2, 3, 4]), manageEmployee)
 app.use('/manageTypecar', authentication, permission([2]), manageTypecar)
 app.use('/manageCleanservice', authentication, permission([2]), manageCleanservice)
 app.use('/managePromotion', authentication, permission([2]), managePromotion)

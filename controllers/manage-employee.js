@@ -4,13 +4,19 @@ var managEmployee = require('../services/manageEmployee-service')
 
 router.get('/', async function (req, res, next) {
     let dataEmp = await managEmployee.getAllEmployee()
-    res.json(dataEmp);
+    res.json({
+        result: 'Success',
+        data: dataEmp
+    })
 });
 router.get('/:id', async function (req, res, next) {
     let { id } = req.params
     try {
         let dataEmp = await managEmployee.getEmployeeByID(id)
-        res.json(dataEmp)
+        res.json({
+            result: 'Success',
+            data: dataEmp
+        })
     } catch (Exception) {
         res.sent(400)
     }

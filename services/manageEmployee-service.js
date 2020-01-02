@@ -9,7 +9,7 @@ module.exports.insert = async function(data) {
         employee_fname: data.employee_fname,
         employee_lname: data.employee_lname,
         employee_tel: data.employee_tel,
-        position_id: data.position_id,
+        position_id: data.position_id, 
         create_datetime: data.create_datetime
     })
 }

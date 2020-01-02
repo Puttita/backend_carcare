@@ -5,7 +5,7 @@ let config = require("../config.json");
 let moment = require("moment");
 
 module.exports = {
-  login: async function(username, password) {
+  login: async function (username, password) {
     let employee = await db.employee.findOne({
       where: { employee_username: username }
     });
@@ -41,7 +41,7 @@ module.exports = {
       fname: employee.employee_fname,
       lname: employee.employee_lname,
       tel: employee.employee_tel,
-      position: employee.position_id
+      position: employee.position_id,
     };
   }
 };

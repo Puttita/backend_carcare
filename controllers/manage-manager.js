@@ -12,6 +12,7 @@ router.post('/', async function(req, res, next) {
     try {
         let result = await manageManager.insert(dataMG)
         res.sendStatus(200)
+        res.send('Success')
     } catch (Exception) {
         console.error(Exception)
         res.sendStatus(400)

@@ -32,6 +32,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: false
     },
+    // img: {
+    //   type: DataTypes.BLOB,
+    //   allowNull: true,
+    // },
     create_datetime: {
       type: DataTypes.DATE,
       allowNull: false

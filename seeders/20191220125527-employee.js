@@ -39,6 +39,7 @@ module.exports = {
     employee_fname: 'cleaner',
     employee_lname: 'cleaner',
     employee_tel: '33333333333',
+    status: 1,
     position_id: 4,
     create_datetime: new Date()
    },
@@ -49,6 +50,7 @@ module.exports = {
     employee_fname: 'cleaner',
     employee_lname: 'cleaner',
     employee_tel: '44444444444',
+    status: 1,
     position_id: 5,
     create_datetime: new Date()
    }
