@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     members_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'members',
         key: 'members_id'
@@ -61,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     promotion_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'promotion',
         key: 'promotion_id'

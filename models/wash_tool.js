@@ -17,11 +17,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     tool_status: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: true
     },
     employee_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'employee',
         key: 'employee_id'

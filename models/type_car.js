@@ -10,14 +10,6 @@ module.exports = function(sequelize, DataTypes) {
     size: {
       type: DataTypes.STRING(45),
       allowNull: false
-    },
-    brand: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    model: {
-      type: DataTypes.STRING(255),
-      allowNull: false
     }
   }, {
     tableName: 'type_car'

@@ -12,15 +12,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     time_duration: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
-    service_detail_id: {
+    clean_service_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
-        model: 'service_detail',
-        key: 'service_detail_id'
+        model: 'clean_service',
+        key: 'clean_service_id'
       }
     },
     reserv_id: {

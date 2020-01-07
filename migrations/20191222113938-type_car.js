@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('type_car', {
-      type_car_id:{
+      type_car_id: {
         type: Sequelize.INTEGER,
         allowNul: false,
         primaryKey: true,
@@ -11,14 +11,6 @@ module.exports = {
       },
       size: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-      },
-      brand: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-      },
-      model: {
-        type: Sequelize.STRING(255),
         allowNull: false,
       }
     })

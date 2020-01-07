@@ -2,24 +2,20 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('clean_service', {
-      clean_service_id: {
+    return queryInterface.createTable('Car', {
+      car_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNul: false,
         primaryKey: true,
         autoIncrement: true
       },
-      service_name: {
+      brand: {
         type: Sequelize.STRING(255),
-        allowNull: false
-      },
-      service_price: {
-        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      service_duration: {
-        type: Sequelize.TIME,
-        allowNull: false
+      model: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
       },
       type_car_id: {
         type: Sequelize.INTEGER,
@@ -35,6 +31,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('clean_service')
+    return queryInterface.dropTable('Car')
   }
 };

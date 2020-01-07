@@ -19,11 +19,11 @@ module.exports = {
       },
       tool_status: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       employee_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: {
             tableName: 'employee'

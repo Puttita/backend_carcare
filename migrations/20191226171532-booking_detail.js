@@ -14,17 +14,17 @@ module.exports = {
         allowNull: false,
       },
       time_duration: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
         allowNull: false
       },
-      service_detail_id: {
+      clean_service_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: {
-            tableName: 'service_detail'
+            tableName: 'clean_service'
           },
-          key: "service_detail_id"
+          key: "clean_service_id"
         }
       },
       reserv_id: {

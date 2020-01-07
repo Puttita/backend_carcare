@@ -9,7 +9,7 @@ router.get('/', async function (req, res, next) {
         data: dataEmp
     })
 });
-router.get('/:id', async function (req, res, next) {
+router.get('/edit/:id', async function (req, res, next) {
     let { id } = req.params
     try {
         let dataEmp = await managEmployee.getEmployeeByID(id)
@@ -18,14 +18,16 @@ router.get('/:id', async function (req, res, next) {
             data: dataEmp
         })
     } catch (Exception) {
-        res.sent(400)
+        console.log(Exception);
+
+        res.sendStatus(400)
     }
 });
 router.post('/', async function (req, res, next) {
     const data = req.body
     try {
         let result = await managEmployee.insert(data)
-        res.sendStatus(200)
+        res.status(200).json({ result: 'Success' })
     } catch (Exception) {
         console.error(Exception)
         res.sendStatus(400)

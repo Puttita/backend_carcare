@@ -28,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: false
     },
+    status: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
     position_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
