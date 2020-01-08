@@ -1,4 +1,3 @@
-
 let db = require('../models')
 
 module.exports.insert = async function (data) {

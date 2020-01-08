@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     license: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.STRING(10),
       allowNull: false
     },
     total_price: {
@@ -24,15 +24,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     start_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
     end_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
     reserv_status: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER(11),
       allowNull: false
     },
     employee_id: {

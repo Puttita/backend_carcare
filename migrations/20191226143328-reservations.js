@@ -14,7 +14,7 @@ module.exports = {
         allowNull: true,
       },
       license: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(10),
         allowNull: false,
       },
       total_price: {
@@ -26,15 +26,15 @@ module.exports = {
         allowNull: false
       },
       start_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
         allowNull: false
       },
       end_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
         allowNull: false
       },
       reserv_status: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       employee_id: {
