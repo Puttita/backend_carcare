@@ -11,20 +11,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    service_price: {
+    wash_tool_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
-    },
-    service_duration: {
-      type: DataTypes.TIME,
-      allowNull: false
-    },
-    type_car_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
       references: {
-        model: 'type_car',
-        key: 'type_car_id'
+        model: 'wash_tool',
+        key: 'wash_tool_id'
       }
     }
   }, {

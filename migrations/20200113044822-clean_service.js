@@ -11,24 +11,16 @@ module.exports = {
       },
       service_name: {
         type: Sequelize.STRING(255),
-        allowNull: false
-      },
-      service_price: {
-        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      service_duration: {
-        type: Sequelize.TIME,
-        allowNull: false
-      },
-      type_car_id: {
+      wash_tool_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: {
-            tableName: 'type_car'
+            tableName: 'wash_tool'
           },
-          key: "type_car_id"
+          key: "wash_tool_id"
         }
       },
     })

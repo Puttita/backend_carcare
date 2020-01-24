@@ -10,7 +10,6 @@ module.exports = {
      employee_lname: 'admin',
      employee_tel: '0000000000',
      position_id: 1,
-     create_datetime: new Date()
    },
    {
     employee_id: 2,
@@ -20,7 +19,6 @@ module.exports = {
     employee_lname: 'manager',
     employee_tel: '1111111111',
     position_id: 2,
-    create_datetime: new Date()
    },
    {
     employee_id: 3,
@@ -30,7 +28,6 @@ module.exports = {
     employee_lname: 'cashier',
     employee_tel: '22222222222',
     position_id: 3,
-    create_datetime: new Date()
    },
    {
     employee_id: 4,
@@ -41,7 +38,6 @@ module.exports = {
     employee_tel: '33333333333',
     status: 1,
     position_id: 4,
-    create_datetime: new Date()
    },
    {
     employee_id: 5,
@@ -52,7 +48,6 @@ module.exports = {
     employee_tel: '44444444444',
     status: 1,
     position_id: 5,
-    create_datetime: new Date()
    }
   ])
   },

@@ -39,10 +39,6 @@ module.exports = function(sequelize, DataTypes) {
         model: 'position',
         key: 'position_id'
       }
-    },
-    create_datetime: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   }, {
     tableName: 'employee'

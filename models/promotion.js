@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     date_start: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     date_end: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     discount_percent: {

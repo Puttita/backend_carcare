@@ -3,34 +3,44 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Car', [{
-      type_car_id: 1,
-      brand: 'Honda',
-      model: 'CITY',
-      type_car_id: 1
+      car_id: 1,
+      brand: 'HONDA',
     },
     {
-      type_car_id: 2,
-      brand: 'Honda',
-      model: 'JAZZ',
-      type_car_id: 1
+      car_id: 2,
+      brand: 'TOYOTA',
     },
     {
-      type_car_id: 3,
-      brand: 'Honda',
-      model: 'BRIO',
-      type_car_id: 1
+      car_id: 3,
+      brand: 'FORD',
     },
     {
-      type_car_id: 4,
-      brand: 'Honda',
-      model: 'CIVIC',
-      type_car_id: 2
+      car_id: 4,
+      brand: 'MAZDA',
     },
     {
-      type_car_id: 5,
-      brand: 'Honda',
-      model: 'ACCORD',
-      type_car_id: 3
+      car_id: 5,
+      brand: 'MITSUBISHI',
+    },
+    {
+      car_id: 6,
+      brand: 'NISSAN',
+    },
+    {
+      car_id: 7,
+      brand: 'AUDI',
+    },
+    {
+      car_id: 8,
+      brand: 'BENTLEY',
+    },
+    {
+      car_id: 9,
+      brand: 'BMW',
+    },
+    {
+      car_id: 10,
+      brand: 'CHEVROLET',
     }
     ])
   },

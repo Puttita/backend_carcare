@@ -12,21 +12,7 @@ module.exports = {
       brand: {
         type: Sequelize.STRING(255),
         allowNull: false,
-      },
-      model: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-      },
-      type_car_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: 'type_car'
-          },
-          key: "type_car_id"
-        }
-      },
+      }
     })
   },
 

@@ -43,11 +43,6 @@ module.exports = {
           },
           key: "position_id"
         }
-      },
-      create_datetime: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
       }
     });
   },

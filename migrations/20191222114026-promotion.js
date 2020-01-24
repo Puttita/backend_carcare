@@ -14,11 +14,11 @@ module.exports = {
         allowNull: true
       },
       date_start: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       date_end: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       discount_percent: {

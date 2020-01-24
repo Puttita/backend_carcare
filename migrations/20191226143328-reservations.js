@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
       },
       reserv_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       start_date: {
