@@ -83,8 +83,11 @@ describe('cannot booking with already book', function () {
 
   it('should return null', async function () {
     let body = { start_booking_date: '2020-01-15 08:00:00', end_booking_date: '2020-01-15 09:15:00' }
-    let canbook = await canBooking.checkDateByCarWashID(body.start_booking_date, body.end_booking_date)
-      await assert.equal(canbook, null, 'should return null')
+    try{
+    await canBooking.checkDateByCarWashID(body.start_booking_date, body.end_booking_date)
+    } catch(e){
+      await assert.equal(e, 'please select other time', 'should return `please select other time`')
+    }
   })
 
   afterEach(async function () {

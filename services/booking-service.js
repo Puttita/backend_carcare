@@ -56,7 +56,7 @@ module.exports.checkDateByCarWashID = async function(start_booking_date, end_boo
      const slot2 = await this.checkDateBooking(start_booking_date, end_booking_date, 2)
 
      if(slot1 && slot2){
-         return null;
+         throw 'please select other time'
      } else if(slot1 == false && slot2 == false){
          return {car_wash_id: 1}
      } else if(slot1) {

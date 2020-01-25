@@ -38,7 +38,8 @@ module.exports.checkAfterDate = function(req, res, next) {
 module.exports.checkDateByCarWashID = function(req, res, next) {
     const { start_book_date, end_book_date } = req.body
     try{
-        await booking.checkDateByCarWashID(start_book_date, end_book_date)
+        const car_wash = await booking.checkDateByCarWashID(start_book_date, end_book_date)
+        req.body.car_wash_id = car_wash.car_wash_id
         next()
     }catch(Exception){
         res.send(400)
