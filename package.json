@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon node ./bin/www",
-    "production": "node ./bin/www"
+    "production": "node ./bin/www",
+    "test": "nyc mocha --recursive --exit"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -13,11 +14,28 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "jwt-simple": "^0.5.6",
+    "mocha": "^6.2.2",
+    "mock-express-request": "^0.2.2",
+    "mock-express-response": "^0.2.2",
     "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
     "morgan": "~1.9.1",
     "mysql2": "^2.0.2",
+    "nyc": "^15.0.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "sequelize": "^5.21.3"
+    "sequelize": "^5.21.3",
+    "sinon": "^7.5.0",
+    "sqlite3": "^4.1.1"
+  },
+  "nyc": {
+    "exclude": [
+      "app.js",
+      "test",
+      "models",
+      "migrations",
+      "seeders",
+      "config"
+    ]
   }
 }
