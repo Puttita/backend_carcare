@@ -24,23 +24,28 @@ router.get('/detail/:id', async function (req, res, next) {
         res.sendStatus(400)
     }
 });
-router.post('/checkbooking', async function (req, res, next) {
 
-    try {
-        const { startdate, time } = req.body
-        let data = await booking.checkDateBooking(startdate, time)
-        res.json({
-            result: 'Success',
-            data: data
-        });
-    } catch (Exception) {
-        //console.log(Exception);
+module.exports.checkAfterDate = function(req, res, next) {
+   const { start_book_date } = req.body
+   try{
+       await booking.checkAfterDate(start_book_date)
+       next()
+   }catch(Exception){
+       res.send(400)
+   }
+}
 
-        res.status(400)
+module.exports.checkDateByCarWashID = function(req, res, next) {
+    const { start_book_date, end_book_date } = req.body
+    try{
+        await booking.checkDateByCarWashID(start_book_date, end_book_date)
+        next()
+    }catch(Exception){
+        res.send(400)
     }
-});
+}
 
-router.post('/', async function (req, res, next) {
+router.post('/',this.checkBeforeDate, this.checkDateByCarWashID, async function (req, res, next) {
     const data = req.body
     try {
         let result = await booking.insert(data)

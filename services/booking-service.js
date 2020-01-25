@@ -87,6 +87,7 @@ module.exports.checkDateBooking = async function (start_booking_date, end_bookin
     return false
 }
 
-module.exports.checkAfterDate = function(start_book_date){
-   if(!moment().isAfter(moment(start_book_date))) throw 'please booking before a day'
+module.exports.checkBeforeDate = function(start_book_date){    
+   if(!moment().isBefore(moment(start_book_date, 'YYYY-MM-DD hh:mm:ss'))) throw 'please booking before a day'
+   return true;
 } 

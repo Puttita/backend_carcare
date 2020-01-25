@@ -91,3 +91,18 @@ describe('cannot booking with already book', function () {
     db.reservations.destroy({ where: {} })
   })
 })
+
+describe('before date', function(){
+  it('should return true', async function(){
+    const result = await canBooking.checkBeforeDate(moment().add(1, 'days').format('YYYY-MM-DD hh:mm:ss').toString())
+    await assert.equal(result, true, 'should return true')
+  })
+
+  it('should return exception', async function(){
+    try{
+      await canBooking.checkBeforeDate(moment().add(1, 'days').format('YYYY-MM-DD hh:mm:ss').toString())
+    }catch(Exception){
+      await assert(Exception, 'please booking before a day', 'should return `please booking before a day`')
+    }
+  })
+})
