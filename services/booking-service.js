@@ -1,5 +1,7 @@
 let db = require('../models')
-let moment = require('moment')
+const Moment = require('moment')
+const momentRange = require('moment-range')
+const moment = momentRange.extendMoment(Moment)
 
 module.exports.insert = async function (data) {
     await db.reservations.upsert({
@@ -49,24 +51,42 @@ module.exports.getBookingDetail = async function (id) {
     return detail[0];
 }
 
-module.exports.checkDateBooking = async function (start_datetime, end_datetime) {
-    // let date = await db.sequelize.query(`select * from reservations 
-    // where reservations.reserv_date = '${startdate}' and reservations.start_date = '${time}' 
-    // and reservations.end_date <= '${time}' and reservations.car_wash_id between (1 and 2) `)
+module.exports.checkDateByCarWashID = async function(start_booking_date, end_booking_date){
+     const slot1 = await this.checkDateBooking(start_booking_date, end_booking_date, 1)
+     const slot2 = await this.checkDateBooking(start_booking_date, end_booking_date, 2)
 
-    /* CASE 1
-        SET start_book_date is 2020-01-24 09:00:00
-        SET end_book_date is 2020-01-24 09:30:00
-        SET start_booked_date is start on 2020-01-24 09:10:00 
-        SET end_booked_date is end on 2020-01-24 09:40:00
+     if(slot1 && slot2){
+         return null;
+     } else if(slot1 == false && slot2 == false){
+         return {car_wash_id: 1}
+     } else if(slot1) {
+         return {car_wash_id: 2}
+     } else if(slot2) {
+         return {car_wash_id: 1}
+     }
+}
 
-        start_book_date is between         
-    */
-    let data = await db.reservations.findAll()
 
-    let start_date = moment(`${date.reserv_date} ${date.start_date}`)
-    let end_date = moment(`${date.reserv_date} ${date.end_date}`)
-    let isBetween = moment().isBetween(start_date, end_date)
-    if (isBetween) throw 'can not booking please change time'
-    return date[0];
+module.exports.checkDateBooking = async function (start_booking_date, end_booking_date, id) {
+    let start_book_date = moment(start_booking_date, 'YYYY-MM-DD hh:mm:ss') //user want to booking
+    let end_book_date = moment(end_booking_date, 'YYYY-MM-DD hh:mm:ss') //after user select service
+    const book = moment.range(start_book_date, end_book_date)
+
+    let reservations = await db.reservations.findAll({where:{car_wash_id: id}})
+    
+    for (const data of reservations) {
+        let tmp_start_booked_date = await moment(data.start_date).format('hh:mm:ss').toString()
+        let tmp_end_booked_date = await moment(data.end_date).format('hh:mm:ss').toString()
+        let start_booked_date = await moment(`${data.reserv_date} ${tmp_start_booked_date}`, 'YYYY-MM-DD hh:mm:ss')
+        let end_booked_date = await moment(`${data.reserv_date} ${tmp_end_booked_date}`, 'YYYY-MM-DD hh:mm:ss') 
+	
+        let was_book = await moment.range(start_booked_date, end_booked_date)
+
+        return await was_book.overlaps(book)        
+    }  
+    return false
+}
+
+module.exports.checkAfterDate = function(start_book_date){
+   if(!moment().isAfter(moment(start_book_date))) throw 'please booking before a day'
 } 
