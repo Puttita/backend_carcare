@@ -32,7 +32,5 @@ describe('booking', function () {
         await assert.equal(insert.booking_detail_id, 1, 'booking_detail_id should return `1`')
         await assert.equal(insert.total, 3, 'booking_detail_id should return `3`')        
         await assert.equal(insert.clean_service_id, 1, 'clean_service_id Should return `1`')
-
-
     })
 })
