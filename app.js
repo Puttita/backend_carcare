@@ -20,9 +20,13 @@ var managePromotion = require('./controllers/manage-promotion')
 var manageTool = require('./controllers/manage-washtool')
 var booking = require('./controllers/booking-service')
 var loginWithToken = require('./controllers/loginWithToken')
+
 const corsOptions = {
-    origin: [process.env.URL, 'http://localhost:3999', '*']
+    origin: process.env.URL||"http://localhost:4200",
+    preflightContinue: false,
 }
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
 
 var app = express();
 app.use(logger('dev'));
