@@ -4,28 +4,9 @@ const momentRange = require('moment-range')
 const moment = momentRange.extendMoment(Moment)
 
 module.exports.insert = async function (data) {
-    await db.reservations.upsert({
-        reserv_id: data.reserv_id,
-        customer_name: data.customer_name,
-        license: data.license,
-        total_price: data.total_price,
-        reserv_date: data.reserv_date,
-        start_date: data.start_date,
-        end_date: data.end_date,
-        reserv_status: data.reserv_status,
-        employee_id: data.employee_id,
-        members_id: data.members_id,
-        car_wash_id: data.car_wash_id,
-        promotion_id: data.promotion_id,
-
-    })
-    await db.booking_detail.upsert({
-        booking_detail_id: data.booking_detail_id,
-        total: data.total,
-        time_duration: data.time_duration,
-        clean_service_id: data.clean_service_id,
-        reserv_id: data.reserv_id,
-    })
+    const reservation = await db.reservations.create({...data.reservation})
+    await data.booking_detail.map(detail => detail.reserv_id = reservation.dataValues.reserv_id)
+    const booking = await db.booking_detail.bulkCreate(data.booking_detail)
 }
 module.exports.getBooking = async function () {
     let booking = await db.sequelize.query(`select reservations.reserv_id, reservations.customer_name, reservations.license, reservations.total_price,

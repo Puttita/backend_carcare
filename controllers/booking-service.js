@@ -25,7 +25,7 @@ router.get('/detail/:id', async function (req, res, next) {
     }
 });
 
-module.exports.checkBeforeDate = function(req, res, next) {
+module.exports.checkBeforeDate = async function(req, res, next) {
    const { start_book_date } = req.body
    try{
        await booking.checkBeforeDate(start_book_date)
@@ -35,7 +35,7 @@ module.exports.checkBeforeDate = function(req, res, next) {
    }
 }
 
-module.exports.checkDateByCarWashID = function(req, res, next) {
+module.exports.checkDateByCarWashID = async function(req, res, next) {
     const { start_book_date, end_book_date } = req.body
     try{
         const car_wash = await booking.checkDateByCarWashID(start_book_date, end_book_date)
@@ -46,31 +46,24 @@ module.exports.checkDateByCarWashID = function(req, res, next) {
     }
 }
 
-router.post('/',this.checkBeforeDate, this.checkDateByCarWashID, async function (req, res, next) {
-    const data = req.body
-    try {
-        let result = await booking.insert(data)
-        res.status(200).json({
-            result: 'Success',
-            data: data
-        })
-    } catch (Exception) {
-        console.error(Exception)
-        res.sendStatus(400)
-    }
-});
 
-router.post('/web', this.checkDateByCarWashID, async function(req, res, next){
-     const data = req.body
-     try {
-       res.status(200).json({
-         result: 'Success',
-         data: data
-       })
-     } catch(Exception) {
-       console.error(Exception)
-       res.sendStatus(400)
-     }
-})
+module.exports.book = async function(req, res, next){
+  const data = req.body
+  try{
+    let result = await booking.insert(data)
+    res.status(200).json({
+       result: 'Success',
+       data: data
+    })
+  }catch(Exception){
+    console.error(Exception)
+    res.json({
+     result: 'Bad Request'
+    })
+  }
+}
 
-module.exports = router;
+router.post('/cashier', this.checkDateByCarWashID, this.book)
+router.post('/',this.checkBeforeDate, this.checkDateByCarWashID, this.book)
+
+module.exports.router = router;
