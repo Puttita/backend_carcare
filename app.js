@@ -25,10 +25,10 @@ const corsOptions = {
     origin: process.env.URL||"http://localhost:4200",
     preflightContinue: false,
 }
+var app = express();
+
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions))
-
-var app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
