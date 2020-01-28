@@ -25,10 +25,10 @@ router.get('/detail/:id', async function (req, res, next) {
     }
 });
 
-module.exports.checkAfterDate = function(req, res, next) {
+module.exports.checkBeforeDate = function(req, res, next) {
    const { start_book_date } = req.body
    try{
-       await booking.checkAfterDate(start_book_date)
+       await booking.checkBeforeDate(start_book_date)
        next()
    }catch(Exception){
        res.send(400)
@@ -59,4 +59,18 @@ router.post('/',this.checkBeforeDate, this.checkDateByCarWashID, async function 
         res.sendStatus(400)
     }
 });
+
+router.post('/web', this.checkDateByCarWashID, async function(req, res, next){
+     const data = req.body
+     try {
+       res.status(200).json({
+         result: 'Success',
+         data: data
+       })
+     } catch(Exception) {
+       console.error(Exception)
+       res.sendStatus(400)
+     }
+})
+
 module.exports = router;
